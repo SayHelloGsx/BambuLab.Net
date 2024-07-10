@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BambuLab.Sdk.ExampleConsole
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{C0D37D4D-BC73-491F-921D-2A445B60D93E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BambuLab.Sdk.MiHomeNotification", "examples\BambuLab.Sdk.MiHomeNotification\BambuLab.Sdk.MiHomeNotification.csproj", "{901C52C8-3949-4E7D-A194-F42172DCF651}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{FF9814CF-9F9D-4B37-A6AE-DB6826D313EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF9814CF-9F9D-4B37-A6AE-DB6826D313EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF9814CF-9F9D-4B37-A6AE-DB6826D313EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{901C52C8-3949-4E7D-A194-F42172DCF651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{901C52C8-3949-4E7D-A194-F42172DCF651}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{901C52C8-3949-4E7D-A194-F42172DCF651}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{901C52C8-3949-4E7D-A194-F42172DCF651}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FF9814CF-9F9D-4B37-A6AE-DB6826D313EA} = {C0D37D4D-BC73-491F-921D-2A445B60D93E}
+		{901C52C8-3949-4E7D-A194-F42172DCF651} = {C0D37D4D-BC73-491F-921D-2A445B60D93E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EDD837E8-AAA3-4D13-81CE-10168DE9DD30}
