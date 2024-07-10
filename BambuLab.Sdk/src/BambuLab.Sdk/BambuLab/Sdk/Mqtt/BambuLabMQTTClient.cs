@@ -294,16 +294,6 @@ public class BambuLabMqttClient
             var printData = doc["print"];
             foreach (var kvp in printData)
             {
-                if (kvp.Key == "stg_cur")
-                {
-                    await Console.Out.WriteLineAsync("stg_cur : " +kvp.Value.ToString());
-                }
-
-                if (kvp.Key == "gcode_state")
-                {
-                    await Console.Out.WriteLineAsync("gcode_state : " + kvp.Value.ToString());
-                }
-
                 Data[kvp.Key] = kvp.Value.ToString();
 
                 if (!SubscriptionKeyMap.TryGetValue(kvp.Key, out var func))
