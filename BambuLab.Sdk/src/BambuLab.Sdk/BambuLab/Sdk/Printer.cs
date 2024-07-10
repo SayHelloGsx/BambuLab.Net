@@ -20,6 +20,8 @@ public abstract class Printer : IPrinter
 
     public event Func<PrintStatusEnum, Task> OnPrintStatusChanged;
 
+    public bool IsMqttConnected => BambuLabMqttClient.IsConnected;
+
     public Printer(string ipAddress, string accessCode, string serial, string userName)
     {
         IpAddress = ipAddress;

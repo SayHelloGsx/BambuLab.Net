@@ -7,6 +7,8 @@ namespace BambuLab.Sdk;
 
 public interface IPrinterReader : IAsyncDisposable
 {
+    bool IsMqttConnected { get; }
+
     Task<int?> GetRemainingTimeAsync();
 
     Task<int?> GetPercentageAsync();
