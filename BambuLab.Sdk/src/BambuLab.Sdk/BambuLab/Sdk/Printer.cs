@@ -17,8 +17,9 @@ public abstract class Printer : IPrinter
     protected virtual BambuLabFtpClient BambuLabFtpClient { get; }
 
     protected virtual PrintStatusEnum LastPrintStatus { get; set; }
+    protected virtual GcodeStateEnum LastGcodeState { get; set; }
 
-    public event Func<PrintStatusEnum, Task> OnPrintStatusChanged;
+    public event Func<PrintStatusEnum, GcodeStateEnum, Task> OnPrintStatusChanged;
 
     public bool IsMqttConnected => BambuLabMqttClient.IsConnected;
 
@@ -45,7 +46,7 @@ public abstract class Printer : IPrinter
         await BambuLabMqttClient.DisconnectAsync();
     }
 
-    public Printer RegisterOnPrintStatusChangedAsync(Func<PrintStatusEnum, Task> func)
+    public Printer RegisterOnPrintStatusChangedAsync(Func<PrintStatusEnum, GcodeStateEnum, Task> func)
     {
         OnPrintStatusChanged += func;
         return this;
@@ -305,17 +306,19 @@ public abstract class Printer : IPrinter
     protected virtual async Task OnDataUpdateAsync(Dictionary<string, string> data)
     {
         var currentStatus = await GetCurrentStateAsync();
+        var currentGcodeState = await GetPrinterStateAsync();
 
-        if (LastPrintStatus == currentStatus)
+        if (LastPrintStatus == currentStatus && LastGcodeState == currentGcodeState)
         {
             return;
         }
 
         LastPrintStatus = currentStatus;
+        LastGcodeState = currentGcodeState;
 
         if (null != OnPrintStatusChanged)
         {
-            await OnPrintStatusChanged.Invoke(currentStatus);
+            await OnPrintStatusChanged.Invoke(currentStatus, currentGcodeState);
         }
     }
 

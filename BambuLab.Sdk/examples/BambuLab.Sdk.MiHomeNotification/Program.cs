@@ -18,8 +18,10 @@ namespace BambuLab.Sdk.MiHomeNotification
             Console.Out.WriteLine("Listening... Press any key to exit...");
             await using (var printer = await ConnectToPrinterAsync(host.Services.GetRequiredService<IConfiguration>()))
             {
-                printer.OnPrintStatusChanged += async status =>
+                printer.OnPrintStatusChanged += async (status, gcodeState) =>
                 {
+                    var needNotification = false;
+
                     switch (status)
                     {
                         case PrintStatusEnum.M400_PAUSE:
@@ -37,8 +39,20 @@ namespace BambuLab.Sdk.MiHomeNotification
                         case PrintStatusEnum.PAUSED_CUTTER_ERROR:
                         case PrintStatusEnum.PAUSED_FIRST_LAYER_ERROR:
                         case PrintStatusEnum.PAUSED_NOZZLE_CLOG:
-                            await SendNotificationAsync(miHomeDriver, "打印任务暂停，请检查打印机状态！");
+                            needNotification = true;
                             break;
+                    }
+
+                    switch (gcodeState)
+                    {
+                        case GcodeStateEnum.PAUSE:
+                            needNotification = true;
+                            break;
+                    }
+
+                    if (needNotification)
+                    {
+                        await SendNotificationAsync(miHomeDriver, "打印任务暂停，请检查打印机状态！");
                     }
                 };
 

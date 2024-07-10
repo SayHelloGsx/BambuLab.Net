@@ -7,5 +7,5 @@ namespace BambuLab.Sdk;
 
 public interface IPrinter : IPrinterReader, IPrinterOperator, IAsyncDisposable
 {
-    event Func<PrintStatusEnum, Task> OnPrintStatusChanged;
+    event Func<PrintStatusEnum, GcodeStateEnum, Task> OnPrintStatusChanged;
 }
