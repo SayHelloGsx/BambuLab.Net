@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 namespace BambuLab.Sdk;
 public interface IPrinterOperator : IAsyncDisposable
 {
+    Task ConnectAsync();
+
     Task<bool> TurnLightOnAsync();
 
     Task<bool> TurnLightOffAsync();

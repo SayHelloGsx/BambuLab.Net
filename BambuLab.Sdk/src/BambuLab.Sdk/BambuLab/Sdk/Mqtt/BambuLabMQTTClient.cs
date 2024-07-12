@@ -41,6 +41,8 @@ public class BambuLabMqttClient
 
     public event Func<Dictionary<string, string>, Task> OnDataUpdatedAsync;
 
+    public event Func<Task> OnDisconnectedAsync;
+
     public bool IsConnected => Client.IsConnected;
 
     public BambuLabMqttClient(
@@ -84,7 +86,10 @@ public class BambuLabMqttClient
 
     protected virtual async Task OnDisconnectedAsnyc(MqttClientDisconnectedEventArgs args)
     {
-        await Console.Out.WriteLineAsync($"Disconnected: {args.ReasonString}");
+        if (null != OnDisconnectedAsync)
+        {
+            await OnDisconnectedAsync.Invoke();
+        }
     }
 
     public virtual async Task ConnectAsync()
@@ -294,7 +299,7 @@ public class BambuLabMqttClient
             var printData = doc["print"];
             foreach (var kvp in printData)
             {
-                Data[kvp.Key] = kvp.Value.ToString();
+                Data[kvp.Key] = kvp.Value?.ToString();
 
                 if (!SubscriptionKeyMap.TryGetValue(kvp.Key, out var func))
                 {
