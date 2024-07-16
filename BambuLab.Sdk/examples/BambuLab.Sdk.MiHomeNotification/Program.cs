@@ -15,11 +15,13 @@ namespace BambuLab.Sdk.MiHomeNotification
             var host = await RegistrateServiceAsync();
             var miHomeDriver = host.Services.GetRequiredService<IMiHomeDriver>();
 
-            Console.Out.WriteLine("Listening... Press any key to exit...");
+            await Console.Out.WriteLineAsync("Listening... Press any key to exit...");
             await using (var printer = await ConnectToPrinterAsync(host.Services.GetRequiredService<IConfiguration>()))
             {
                 printer.OnPrintStatusChanged += async (status, gcodeState) =>
                 {
+                    await Console.Out.WriteLineAsync($"Status changed. PrintStatus: {status}, GcodeState: {gcodeState}");
+
                     var needNotification = false;
 
                     switch (status)
@@ -52,14 +54,26 @@ namespace BambuLab.Sdk.MiHomeNotification
 
                     if (needNotification)
                     {
+                        await Console.Out.WriteLineAsync($"The print task has been paused. Time:{DateTime.Now}, PrintStatus: {status}, GcodeState: {gcodeState}");
                         await SendNotificationAsync(miHomeDriver, "打印任务暂停，请检查打印机状态！");
                     }
                 };
 
-                await Console.In.ReadLineAsync();
-            }
+                while (true)
+                {
+                    if (!printer.IsMqttConnected)
+                    {
+                        await printer.ConnectAsync();
+                    }
 
-            Console.WriteLine("Hello, World!");
+                    if (Console.KeyAvailable)
+                    {
+                        break;
+                    }
+
+                    await Task.Delay(1000);
+                }
+            }
         }
 
         static Task<IHost> RegistrateServiceAsync()
