@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <Import Project="..\..\common.props" />
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.AspNetCore.Components.WebAssembly.Theming" Version="8.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Gsx.BambuLabPrinter.Notification.Blazor\Gsx.BambuLabPrinter.Notification.Blazor.csproj" />
+        <ProjectReference Include="..\Gsx.BambuLabPrinter.Notification.HttpApi.Client\Gsx.BambuLabPrinter.Notification.HttpApi.Client.csproj" />
+    </ItemGroup>
+
+</Project>

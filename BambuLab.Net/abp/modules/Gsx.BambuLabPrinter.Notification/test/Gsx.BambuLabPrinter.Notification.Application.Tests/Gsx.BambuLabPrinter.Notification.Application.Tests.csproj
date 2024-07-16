@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Gsx.BambuLabPrinter.Notification</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Gsx.BambuLabPrinter.Notification.Application\Gsx.BambuLabPrinter.Notification.Application.csproj" />
+    <ProjectReference Include="..\Gsx.BambuLabPrinter.Notification.Domain.Tests\Gsx.BambuLabPrinter.Notification.Domain.Tests.csproj" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.prod.json",
+  "compilerOptions": {
+    "paths": {
+      "@gsx.Bambu-lab-printer/notification": [
+        "projects/notification/src/public-api.ts"
+      ],
+      "@gsx.Bambu-lab-printer/notification/config": [
+        "projects/notification/config/src/public-api.ts"
+      ],
+      "@proxy": ["projects/notification/src/lib/proxy/index.ts"],
+      "@proxy/*": ["projects/notification/src/lib/proxy/*"]
+    }
+  }
+}

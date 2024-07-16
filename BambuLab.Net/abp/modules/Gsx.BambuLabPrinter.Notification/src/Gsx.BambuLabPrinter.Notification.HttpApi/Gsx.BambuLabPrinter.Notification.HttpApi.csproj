@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Gsx.BambuLabPrinter.Notification</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="8.2.0" />
+    <ProjectReference Include="..\Gsx.BambuLabPrinter.Notification.Application.Contracts\Gsx.BambuLabPrinter.Notification.Application.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>
