@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.Users;
 
-namespace Gsx.BambuLabPrinter.Notification.Accounts;
+namespace Gsx.BambuLabPrinter.Notification.Users;
 
 public class NotificationUser : AggregateRoot<Guid>, IUser, IUpdateUserData
 {

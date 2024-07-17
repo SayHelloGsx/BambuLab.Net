@@ -8,7 +8,7 @@ using Volo.Abp;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.Domain.Entities.Auditing;
 
-namespace Gsx.BambuLabPrinter.Notification.Users;
+namespace Gsx.BambuLabPrinter.Notification.Accounts;
 
 public class BambuLabAccount : FullAuditedAggregateRoot<Guid>
 {
