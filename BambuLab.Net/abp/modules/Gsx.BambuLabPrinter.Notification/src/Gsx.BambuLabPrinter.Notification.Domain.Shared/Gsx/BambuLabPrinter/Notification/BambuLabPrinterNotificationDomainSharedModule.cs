@@ -13,26 +13,26 @@ namespace Gsx.BambuLabPrinter.Notification;
     typeof(AbpValidationModule),
     typeof(AbpDddDomainSharedModule)
 )]
-public class NotificationDomainSharedModule : AbpModule
+public class BambuLabPrinterNotificationDomainSharedModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         Configure<AbpVirtualFileSystemOptions>(options =>
         {
-            options.FileSets.AddEmbedded<NotificationDomainSharedModule>();
+            options.FileSets.AddEmbedded<BambuLabPrinterNotificationDomainSharedModule>();
         });
 
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Resources
-                .Add<NotificationResource>("en")
+                .Add<BambuLabPrinterNotificationResource>("en")
                 .AddBaseTypes(typeof(AbpValidationResource))
                 .AddVirtualJson("/Localization/Notification");
         });
 
         Configure<AbpExceptionLocalizationOptions>(options =>
         {
-            options.MapCodeNamespace("Notification", typeof(NotificationResource));
+            options.MapCodeNamespace("BambuLabPrinterNotification", typeof(BambuLabPrinterNotificationResource));
         });
     }
 }

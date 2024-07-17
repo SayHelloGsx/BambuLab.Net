@@ -7,6 +7,6 @@ public abstract class NotificationController : AbpControllerBase
 {
     protected NotificationController()
     {
-        LocalizationResource = typeof(NotificationResource);
+        LocalizationResource = typeof(BambuLabPrinterNotificationResource);
     }
 }

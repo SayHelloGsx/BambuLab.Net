@@ -1,6 +1,6 @@
 ﻿namespace Gsx.BambuLabPrinter.Notification;
 
-public static class NotificationErrorCodes
+public static class BambuLabPrinterNotificationErrorCodes
 {
     //Add your business exception error codes here...
 }

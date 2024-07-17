@@ -7,7 +7,7 @@ public abstract class NotificationAppService : ApplicationService
 {
     protected NotificationAppService()
     {
-        LocalizationResource = typeof(NotificationResource);
+        LocalizationResource = typeof(BambuLabPrinterNotificationResource);
         ObjectMapperContext = typeof(NotificationApplicationModule);
     }
 }

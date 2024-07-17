@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29001.49
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gsx.BambuLabPrinter.Notification.Domain.Shared", "src\Gsx.BambuLabPrinter.Notification.Domain.Shared\Gsx.BambuLabPrinter.Notification.Domain.Shared.csproj", "{D64C1577-4929-4B60-939E-96DE1534891A}"
 EndProject
@@ -49,19 +49,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gsx.BambuLabPrinter.Notific
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gsx.BambuLabPrinter.Notification.Web.Unified", "host\Gsx.BambuLabPrinter.Notification.Web.Unified\Gsx.BambuLabPrinter.Notification.Web.Unified.csproj", "{3D872C41-E226-45C8-89C1-9D3DBD7C73F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gsx.BambuLabPrinter.Notification.Blazor", "src\Gsx.BambuLabPrinter.Notification.Blazor\Gsx.BambuLabPrinter.Notification.Blazor.csproj", "{827FCC18-A22B-4175-82CD-1233F6DEE8FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gsx.BambuLabPrinter.Notification.Blazor", "src\Gsx.BambuLabPrinter.Notification.Blazor\Gsx.BambuLabPrinter.Notification.Blazor.csproj", "{827FCC18-A22B-4175-82CD-1233F6DEE8FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gsx.BambuLabPrinter.Notification.Blazor.Host.Client", "host\Gsx.BambuLabPrinter.Notification.Blazor.Host.Client\Gsx.BambuLabPrinter.Notification.Blazor.Host.Client.csproj", "{D7E0F672-F5E2-4338-AFF4-4E5091C55A62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gsx.BambuLabPrinter.Notification.Blazor.Host.Client", "host\Gsx.BambuLabPrinter.Notification.Blazor.Host.Client\Gsx.BambuLabPrinter.Notification.Blazor.Host.Client.csproj", "{D7E0F672-F5E2-4338-AFF4-4E5091C55A62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gsx.BambuLabPrinter.Notification.Blazor.Server", "src\Gsx.BambuLabPrinter.Notification.Blazor.Server\Gsx.BambuLabPrinter.Notification.Blazor.Server.csproj", "{299BE52E-823F-408E-9C6D-7E2F81BA34FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gsx.BambuLabPrinter.Notification.Blazor.Server", "src\Gsx.BambuLabPrinter.Notification.Blazor.Server\Gsx.BambuLabPrinter.Notification.Blazor.Server.csproj", "{299BE52E-823F-408E-9C6D-7E2F81BA34FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gsx.BambuLabPrinter.Notification.Blazor.WebAssembly", "src\Gsx.BambuLabPrinter.Notification.Blazor.WebAssembly\Gsx.BambuLabPrinter.Notification.Blazor.WebAssembly.csproj", "{F0EE5760-262D-456A-AA7C-E84F484A05F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gsx.BambuLabPrinter.Notification.Blazor.WebAssembly", "src\Gsx.BambuLabPrinter.Notification.Blazor.WebAssembly\Gsx.BambuLabPrinter.Notification.Blazor.WebAssembly.csproj", "{F0EE5760-262D-456A-AA7C-E84F484A05F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gsx.BambuLabPrinter.Notification.Blazor.Server.Host", "host\Gsx.BambuLabPrinter.Notification.Blazor.Server.Host\Gsx.BambuLabPrinter.Notification.Blazor.Server.Host.csproj", "{FEA752A1-5B4E-49E9-B1F3-DDC25E41BB52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gsx.BambuLabPrinter.Notification.Blazor.Server.Host", "host\Gsx.BambuLabPrinter.Notification.Blazor.Server.Host\Gsx.BambuLabPrinter.Notification.Blazor.Server.Host.csproj", "{FEA752A1-5B4E-49E9-B1F3-DDC25E41BB52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gsx.BambuLabPrinter.Notification.Installer", "src\Gsx.BambuLabPrinter.Notification.Installer\Gsx.BambuLabPrinter.Notification.Installer.csproj", "{BE39FD00-745B-4049-8161-FC129817CBE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gsx.BambuLabPrinter.Notification.Installer", "src\Gsx.BambuLabPrinter.Notification.Installer\Gsx.BambuLabPrinter.Notification.Installer.csproj", "{BE39FD00-745B-4049-8161-FC129817CBE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gsx.BambuLabPrinter.Notification.Blazor.Host", "host\Gsx.BambuLabPrinter.Notification.Blazor.Host\Gsx.BambuLabPrinter.Notification.Blazor.Host.csproj", "{C33FD057-839D-4F92-BA81-DD40B03FB75D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gsx.BambuLabPrinter.Notification.Blazor.Host", "host\Gsx.BambuLabPrinter.Notification.Blazor.Host\Gsx.BambuLabPrinter.Notification.Blazor.Host.csproj", "{C33FD057-839D-4F92-BA81-DD40B03FB75D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sdk", "sdk", "{239D7795-7852-44AC-BC13-560D5F132862}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BambuLab.Sdk", "..\..\..\..\BambuLab.Sdk\src\BambuLab.Sdk\BambuLab.Sdk.csproj", "{F37CAA97-114A-4567-9815-ED571BCF842A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -177,6 +181,10 @@ Global
 		{C33FD057-839D-4F92-BA81-DD40B03FB75D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C33FD057-839D-4F92-BA81-DD40B03FB75D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C33FD057-839D-4F92-BA81-DD40B03FB75D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F37CAA97-114A-4567-9815-ED571BCF842A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F37CAA97-114A-4567-9815-ED571BCF842A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F37CAA97-114A-4567-9815-ED571BCF842A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F37CAA97-114A-4567-9815-ED571BCF842A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -209,6 +217,7 @@ Global
 		{FEA752A1-5B4E-49E9-B1F3-DDC25E41BB52} = {E400416D-2895-4512-9D17-90681EEC7E0A}
 		{BE39FD00-745B-4049-8161-FC129817CBE4} = {649A3FFA-182F-4E56-9717-E6A9A2BEC545}
 		{C33FD057-839D-4F92-BA81-DD40B03FB75D} = {E400416D-2895-4512-9D17-90681EEC7E0A}
+		{F37CAA97-114A-4567-9815-ED571BCF842A} = {239D7795-7852-44AC-BC13-560D5F132862}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C66ECF5B-4230-6E57-890D-EA0AADA07F87}

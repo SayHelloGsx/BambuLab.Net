@@ -84,8 +84,8 @@ public class NotificationWebHostModule : AbpModule
         context.Services.PreConfigure<AbpMvcDataAnnotationsLocalizationOptions>(options =>
         {
             options.AddAssemblyResource(
-                typeof(NotificationResource),
-                typeof(NotificationDomainSharedModule).Assembly,
+                typeof(BambuLabPrinterNotificationResource),
+                typeof(BambuLabPrinterNotificationDomainSharedModule).Assembly,
                 typeof(NotificationApplicationContractsModule).Assembly,
                 typeof(NotificationWebHostModule).Assembly
             );
@@ -183,7 +183,7 @@ public class NotificationWebHostModule : AbpModule
         {
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.ReplaceEmbeddedByPhysical<NotificationDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Gsx.BambuLabPrinter.Notification.Domain.Shared", Path.DirectorySeparatorChar)));
+                options.FileSets.ReplaceEmbeddedByPhysical<BambuLabPrinterNotificationDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Gsx.BambuLabPrinter.Notification.Domain.Shared", Path.DirectorySeparatorChar)));
                 options.FileSets.ReplaceEmbeddedByPhysical<NotificationApplicationContractsModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Gsx.BambuLabPrinter.Notification.Application.Contracts", Path.DirectorySeparatorChar)));
                 options.FileSets.ReplaceEmbeddedByPhysical<NotificationWebModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Gsx.BambuLabPrinter.Notification.Web", Path.DirectorySeparatorChar)));
             });

@@ -2,7 +2,7 @@
 
 namespace Gsx.BambuLabPrinter.Notification.Settings;
 
-public class NotificationSettingDefinitionProvider : SettingDefinitionProvider
+public class BambuLabPrinterNotificationSettingDefinitionProvider : SettingDefinitionProvider
 {
     public override void Define(ISettingDefinitionContext context)
     {

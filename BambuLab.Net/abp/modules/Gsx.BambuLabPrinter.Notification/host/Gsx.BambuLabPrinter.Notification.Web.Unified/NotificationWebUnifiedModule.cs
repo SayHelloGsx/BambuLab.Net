@@ -92,8 +92,8 @@ public class NotificationWebUnifiedModule : AbpModule
         {
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.ReplaceEmbeddedByPhysical<NotificationDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Gsx.BambuLabPrinter.Notification.Domain.Shared", Path.DirectorySeparatorChar)));
-                options.FileSets.ReplaceEmbeddedByPhysical<NotificationDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Gsx.BambuLabPrinter.Notification.Domain", Path.DirectorySeparatorChar)));
+                options.FileSets.ReplaceEmbeddedByPhysical<BambuLabPrinterNotificationDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Gsx.BambuLabPrinter.Notification.Domain.Shared", Path.DirectorySeparatorChar)));
+                options.FileSets.ReplaceEmbeddedByPhysical<BambuLabPrinterNotificationDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Gsx.BambuLabPrinter.Notification.Domain", Path.DirectorySeparatorChar)));
                 options.FileSets.ReplaceEmbeddedByPhysical<NotificationApplicationContractsModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Gsx.BambuLabPrinter.Notification.Application.Contracts", Path.DirectorySeparatorChar)));
                 options.FileSets.ReplaceEmbeddedByPhysical<NotificationApplicationModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Gsx.BambuLabPrinter.Notification.Application", Path.DirectorySeparatorChar)));
                 options.FileSets.ReplaceEmbeddedByPhysical<NotificationWebModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Gsx.BambuLabPrinter.Notification.Web", Path.DirectorySeparatorChar)));

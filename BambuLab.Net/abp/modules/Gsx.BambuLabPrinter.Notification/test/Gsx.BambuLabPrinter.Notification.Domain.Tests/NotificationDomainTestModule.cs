@@ -3,7 +3,7 @@
 namespace Gsx.BambuLabPrinter.Notification;
 
 [DependsOn(
-    typeof(NotificationDomainModule),
+    typeof(BambuLabPrinterNotificationDomainModule),
     typeof(NotificationTestBaseModule)
 )]
 public class NotificationDomainTestModule : AbpModule

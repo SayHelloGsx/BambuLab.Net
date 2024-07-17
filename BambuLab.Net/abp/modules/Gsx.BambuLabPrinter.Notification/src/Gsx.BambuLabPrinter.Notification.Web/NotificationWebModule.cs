@@ -23,7 +23,7 @@ public class NotificationWebModule : AbpModule
     {
         context.Services.PreConfigure<AbpMvcDataAnnotationsLocalizationOptions>(options =>
         {
-            options.AddAssemblyResource(typeof(NotificationResource), typeof(NotificationWebModule).Assembly);
+            options.AddAssemblyResource(typeof(BambuLabPrinterNotificationResource), typeof(NotificationWebModule).Assembly);
         });
 
         PreConfigure<IMvcBuilder>(mvcBuilder =>

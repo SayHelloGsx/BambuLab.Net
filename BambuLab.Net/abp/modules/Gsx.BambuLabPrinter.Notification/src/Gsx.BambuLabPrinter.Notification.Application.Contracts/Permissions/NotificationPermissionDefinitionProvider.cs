@@ -13,6 +13,6 @@ public class NotificationPermissionDefinitionProvider : PermissionDefinitionProv
 
     private static LocalizableString L(string name)
     {
-        return LocalizableString.Create<NotificationResource>(name);
+        return LocalizableString.Create<BambuLabPrinterNotificationResource>(name);
     }
 }

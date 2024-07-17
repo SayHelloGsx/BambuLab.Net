@@ -5,7 +5,7 @@ using Volo.Abp.Modularity;
 namespace Gsx.BambuLabPrinter.Notification.EntityFrameworkCore;
 
 [DependsOn(
-    typeof(NotificationDomainModule),
+    typeof(BambuLabPrinterNotificationDomainModule),
     typeof(AbpEntityFrameworkCoreModule)
 )]
 public class NotificationEntityFrameworkCoreModule : AbpModule

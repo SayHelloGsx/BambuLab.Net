@@ -32,7 +32,7 @@ public class NotificationWebHostMenuContributor : IMenuContributor
 
     private void AddLogoutItemToMenu(MenuConfigurationContext context)
     {
-        var l = context.GetLocalizer<NotificationResource>();
+        var l = context.GetLocalizer<BambuLabPrinterNotificationResource>();
 
         context.Menu.Items.Add(new ApplicationMenuItem(
             "Account.Manage",

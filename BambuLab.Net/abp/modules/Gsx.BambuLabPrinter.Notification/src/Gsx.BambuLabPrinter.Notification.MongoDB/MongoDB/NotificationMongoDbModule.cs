@@ -5,7 +5,7 @@ using Volo.Abp.MongoDB;
 namespace Gsx.BambuLabPrinter.Notification.MongoDB;
 
 [DependsOn(
-    typeof(NotificationDomainModule),
+    typeof(BambuLabPrinterNotificationDomainModule),
     typeof(AbpMongoDbModule)
     )]
 public class NotificationMongoDbModule : AbpModule

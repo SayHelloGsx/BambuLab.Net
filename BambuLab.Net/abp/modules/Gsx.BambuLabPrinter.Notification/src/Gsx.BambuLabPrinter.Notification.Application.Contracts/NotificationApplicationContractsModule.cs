@@ -5,7 +5,7 @@ using Volo.Abp.Authorization;
 namespace Gsx.BambuLabPrinter.Notification;
 
 [DependsOn(
-    typeof(NotificationDomainSharedModule),
+    typeof(BambuLabPrinterNotificationDomainSharedModule),
     typeof(AbpDddApplicationContractsModule),
     typeof(AbpAuthorizationModule)
     )]

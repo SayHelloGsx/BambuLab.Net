@@ -25,7 +25,7 @@ public class NotificationHttpApiModule : AbpModule
         Configure<AbpLocalizationOptions>(options =>
         {
             options.Resources
-                .Get<NotificationResource>()
+                .Get<BambuLabPrinterNotificationResource>()
                 .AddBaseTypes(typeof(AbpUiResource));
         });
     }

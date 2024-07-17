@@ -7,6 +7,6 @@ public abstract class NotificationPageModel : AbpPageModel
 {
     protected NotificationPageModel()
     {
-        LocalizationResourceType = typeof(NotificationResource);
+        LocalizationResourceType = typeof(BambuLabPrinterNotificationResource);
     }
 }

@@ -7,6 +7,6 @@ public abstract class NotificationComponentBase : AbpComponentBase
 {
     protected NotificationComponentBase()
     {
-        LocalizationResource = typeof(NotificationResource);
+        LocalizationResource = typeof(BambuLabPrinterNotificationResource);
     }
 }
