@@ -1,0 +1,111 @@
+{
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {},
+      "host": {}
+    }
+  },
+  "packages": {
+    "Gsx.BambuLabPrinter.Domain.Shared": {
+      "path": "src/Gsx.BambuLabPrinter.Domain.Shared/Gsx.BambuLabPrinter.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "Gsx.BambuLabPrinter.Domain": {
+      "path": "src/Gsx.BambuLabPrinter.Domain/Gsx.BambuLabPrinter.Domain.abppkg",
+      "folder": "src"
+    },
+    "Gsx.BambuLabPrinter.Application.Contracts": {
+      "path": "src/Gsx.BambuLabPrinter.Application.Contracts/Gsx.BambuLabPrinter.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "Gsx.BambuLabPrinter.Application": {
+      "path": "src/Gsx.BambuLabPrinter.Application/Gsx.BambuLabPrinter.Application.abppkg",
+      "folder": "src"
+    },
+    "Gsx.BambuLabPrinter.EntityFrameworkCore": {
+      "path": "src/Gsx.BambuLabPrinter.EntityFrameworkCore/Gsx.BambuLabPrinter.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "Gsx.BambuLabPrinter.MongoDB": {
+      "path": "src/Gsx.BambuLabPrinter.MongoDB/Gsx.BambuLabPrinter.MongoDB.abppkg",
+      "folder": "src"
+    },
+    "Gsx.BambuLabPrinter.HttpApi": {
+      "path": "src/Gsx.BambuLabPrinter.HttpApi/Gsx.BambuLabPrinter.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "Gsx.BambuLabPrinter.HttpApi.Client": {
+      "path": "src/Gsx.BambuLabPrinter.HttpApi.Client/Gsx.BambuLabPrinter.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "Gsx.BambuLabPrinter.TestBase": {
+      "path": "test/Gsx.BambuLabPrinter.TestBase/Gsx.BambuLabPrinter.TestBase.abppkg",
+      "folder": "test"
+    },
+    "Gsx.BambuLabPrinter.EntityFrameworkCore.Tests": {
+      "path": "test/Gsx.BambuLabPrinter.EntityFrameworkCore.Tests/Gsx.BambuLabPrinter.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "Gsx.BambuLabPrinter.MongoDB.Tests": {
+      "path": "test/Gsx.BambuLabPrinter.MongoDB.Tests/Gsx.BambuLabPrinter.MongoDB.Tests.abppkg",
+      "folder": "test"
+    },
+    "Gsx.BambuLabPrinter.Domain.Tests": {
+      "path": "test/Gsx.BambuLabPrinter.Domain.Tests/Gsx.BambuLabPrinter.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "Gsx.BambuLabPrinter.Application.Tests": {
+      "path": "test/Gsx.BambuLabPrinter.Application.Tests/Gsx.BambuLabPrinter.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "Gsx.BambuLabPrinter.HttpApi.Host": {
+      "path": "host/Gsx.BambuLabPrinter.HttpApi.Host/Gsx.BambuLabPrinter.HttpApi.Host.abppkg",
+      "folder": "host"
+    },
+    "Gsx.BambuLabPrinter.Web": {
+      "path": "src/Gsx.BambuLabPrinter.Web/Gsx.BambuLabPrinter.Web.abppkg",
+      "folder": "src"
+    },
+    "Gsx.BambuLabPrinter.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/Gsx.BambuLabPrinter.HttpApi.Client.ConsoleTestApp/Gsx.BambuLabPrinter.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "Gsx.BambuLabPrinter.Web.Host": {
+      "path": "host/Gsx.BambuLabPrinter.Web.Host/Gsx.BambuLabPrinter.Web.Host.abppkg",
+      "folder": "host"
+    },
+    "Gsx.BambuLabPrinter.AuthServer": {
+      "path": "host/Gsx.BambuLabPrinter.AuthServer/Gsx.BambuLabPrinter.AuthServer.abppkg",
+      "folder": "host"
+    },
+    "Gsx.BambuLabPrinter.Host.Shared": {
+      "path": "host/Gsx.BambuLabPrinter.Host.Shared/Gsx.BambuLabPrinter.Host.Shared.abppkg",
+      "folder": "host"
+    },
+    "Gsx.BambuLabPrinter.Web.Unified": {
+      "path": "host/Gsx.BambuLabPrinter.Web.Unified/Gsx.BambuLabPrinter.Web.Unified.abppkg",
+      "folder": "host"
+    },
+    "Gsx.BambuLabPrinter.Blazor": {
+      "path": "src/Gsx.BambuLabPrinter.Blazor/Gsx.BambuLabPrinter.Blazor.abppkg",
+      "folder": "src"
+    },
+    "Gsx.BambuLabPrinter.Blazor.Host": {
+      "path": "host/Gsx.BambuLabPrinter.Blazor.Host/Gsx.BambuLabPrinter.Blazor.Host.abppkg",
+      "folder": "host"
+    },
+    "Gsx.BambuLabPrinter.Blazor.Server": {
+      "path": "src/Gsx.BambuLabPrinter.Blazor.Server/Gsx.BambuLabPrinter.Blazor.Server.abppkg",
+      "folder": "src"
+    },
+    "Gsx.BambuLabPrinter.Blazor.WebAssembly": {
+      "path": "src/Gsx.BambuLabPrinter.Blazor.WebAssembly/Gsx.BambuLabPrinter.Blazor.WebAssembly.abppkg",
+      "folder": "src"
+    },
+    "Gsx.BambuLabPrinter.Blazor.Server.Host": {
+      "path": "host/Gsx.BambuLabPrinter.Blazor.Server.Host/Gsx.BambuLabPrinter.Blazor.Server.Host.abppkg",
+      "folder": "host"
+    }
+  }
+}

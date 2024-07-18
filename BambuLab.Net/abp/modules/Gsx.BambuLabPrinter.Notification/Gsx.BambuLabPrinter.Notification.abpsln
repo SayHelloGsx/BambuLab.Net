@@ -1,7 +1,0 @@
-{
-  "modules": {
-    "Gsx.BambuLabPrinter.Notification": {
-      "path": "Gsx.BambuLabPrinter.Notification.abpmdl"
-    }
-  }
-}

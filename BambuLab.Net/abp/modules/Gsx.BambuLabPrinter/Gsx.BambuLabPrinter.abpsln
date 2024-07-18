@@ -1,0 +1,7 @@
+{
+  "modules": {
+    "Gsx.BambuLabPrinter": {
+      "path": "Gsx.BambuLabPrinter.abpmdl"
+    }
+  }
+}
