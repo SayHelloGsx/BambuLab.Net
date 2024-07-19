@@ -8,5 +8,7 @@ public static class BambuLabPrinterErrorCodes
     {
         private const string AccountsPrefix = $"{ErrorCodePrefix}:Account";
         public const string AccountAlreadyExist = $"{AccountsPrefix}:0001";
+        public const string CloudTypeNotSupport = $"{AccountsPrefix}:0002";
+        public const string LoginFailed = $"{AccountsPrefix}:0003";
     }
 }

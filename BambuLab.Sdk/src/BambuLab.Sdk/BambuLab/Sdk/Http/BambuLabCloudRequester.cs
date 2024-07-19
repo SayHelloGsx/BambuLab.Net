@@ -42,6 +42,13 @@ public abstract class BambuLabCloudRequester
         AccessTokenData = await GetAuthenticationTokenAsync<AccessTokenData>();
     }
 
+    public virtual async Task<bool> TryLoginAsync()
+    {
+        AccessTokenData = await TryGetAuthenticationTokenAsync<AccessTokenData>();
+
+        return null != AccessTokenData;
+    }
+
     public virtual Task<bool> IsLoggedInAsync()
     {
         return Task.FromResult(AccessTokenData != null && !AccessTokenData.IsExpired());
@@ -74,6 +81,18 @@ public abstract class BambuLabCloudRequester
 
     protected virtual async Task<T> GetAuthenticationTokenAsync<T>() where T : AccessTokenData
     {
+        var result = await TryGetAuthenticationTokenAsync<T>();
+
+        if (null == result)
+        {
+            throw new BambuLabHttpException(ErrorCodes.Http.LoginFailed);
+        }
+
+        return result;
+    }
+
+    protected virtual async Task<T> TryGetAuthenticationTokenAsync<T>() where T : AccessTokenData
+    {
         HttpClient.DefaultRequestHeaders.Clear();
 
         var requestData = new Dictionary<string, string>
@@ -86,7 +105,7 @@ public abstract class BambuLabCloudRequester
 
         if (!response.IsSuccessStatusCode)
         {
-            throw new BambuLabHttpException(ErrorCodes.Http.LoginFailed);
+            return null;
         }
 
         var bodyContent = await response.Content.ReadAsStringAsync();
