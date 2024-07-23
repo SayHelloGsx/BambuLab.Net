@@ -9,4 +9,5 @@ namespace Gsx.BambuLabPrinter.Localization.Accounts;
 public static class BambuLabAccountConsts
 {
     public const int MaxAccountLength = 128;
+    public const int MaxUserNameLength = 50;
 }

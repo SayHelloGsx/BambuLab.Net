@@ -7,8 +7,8 @@ namespace BambuLab.Sdk.ExampleConsole
     {
         static async Task Main(string[] args)
         {
-            var chinaCloud = new ChinaBambuLabCloudRequester("***", "***");
-            await chinaCloud.LoginAsync();
+            var chinaCloud = new ChinaBambuLabCloudRequester();
+            await chinaCloud.LoginAsync("***", "***");
             var device = await chinaCloud.GetDeviceList();
 
             var SERIAL = device.GetDevId(0);

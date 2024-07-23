@@ -8,7 +8,7 @@ public class PublicBambuLabCloudRequester : BambuLabCloudRequester
 {
     protected override string Domain => "https://api.bambulab.com/";
 
-    public PublicBambuLabCloudRequester(string account, string password) : base(account, password)
+    public PublicBambuLabCloudRequester() : base()
     {
     }
 }

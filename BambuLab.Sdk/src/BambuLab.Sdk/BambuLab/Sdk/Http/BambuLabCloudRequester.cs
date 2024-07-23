@@ -12,12 +12,10 @@ namespace BambuLab.Sdk.Http;
 
 public abstract class BambuLabCloudRequester
 {
-    protected virtual string Account { get; }
-    protected virtual string Password { get; }
     protected virtual HttpClient HttpClient { get; }
     protected virtual IJsonSerializer JsonSerializer => _defaultJsonSerializer;
-    protected virtual AccessTokenData AccessTokenData { get; set; }
 
+    public virtual AccessTokenData AccessTokenData { get; protected set; }
     public virtual string AccessToken => AccessTokenData?.AccessToken;
     public virtual string UserName => AccessTokenData?.GetUserName();
 
@@ -26,25 +24,28 @@ public abstract class BambuLabCloudRequester
     private const string _mediaType = "application/json";
     private readonly IJsonSerializer _defaultJsonSerializer = new DefaultJsonSerializer();
 
-    protected BambuLabCloudRequester(string account, string password)
+    protected BambuLabCloudRequester()
     {
-        Account = account;
-        Password = password;
-
         HttpClient = new HttpClient()
         {
             BaseAddress = new Uri(Domain)
         };
     }
 
-    public virtual async Task LoginAsync()
+    public virtual async Task LoginAsync(string account, string password)
     {
-        AccessTokenData = await GetAuthenticationTokenAsync<AccessTokenData>();
+        AccessTokenData = await GetAuthenticationTokenAsync<AccessTokenData>(account, password);
     }
 
-    public virtual async Task<bool> TryLoginAsync()
+    public virtual async Task<bool> TryLoginAsync(AccessTokenData accessTokenData)
     {
-        AccessTokenData = await TryGetAuthenticationTokenAsync<AccessTokenData>();
+        AccessTokenData = accessTokenData;
+        return await IsLoggedInAsync();
+    }
+
+    public virtual async Task<bool> TryLoginAsync(string account, string password)
+    {
+        AccessTokenData = await TryGetAuthenticationTokenAsync<AccessTokenData>(account, password);
 
         return null != AccessTokenData;
     }
@@ -54,7 +55,7 @@ public abstract class BambuLabCloudRequester
         return Task.FromResult(AccessTokenData != null && !AccessTokenData.IsExpired());
     }
 
-    public virtual async Task<DeviceListResponseData> GetDeviceList()
+    public virtual async Task<DeviceListResponseData> GetDeviceListAsync()
     {
         await SetAuthenticationHeaderAsync();
 
@@ -79,9 +80,9 @@ public abstract class BambuLabCloudRequester
         return deviceListResponse;
     }
 
-    protected virtual async Task<T> GetAuthenticationTokenAsync<T>() where T : AccessTokenData
+    protected virtual async Task<T> GetAuthenticationTokenAsync<T>(string account, string password) where T : AccessTokenData
     {
-        var result = await TryGetAuthenticationTokenAsync<T>();
+        var result = await TryGetAuthenticationTokenAsync<T>(account, password);
 
         if (null == result)
         {
@@ -91,14 +92,14 @@ public abstract class BambuLabCloudRequester
         return result;
     }
 
-    protected virtual async Task<T> TryGetAuthenticationTokenAsync<T>() where T : AccessTokenData
+    protected virtual async Task<T> TryGetAuthenticationTokenAsync<T>(string account, string password) where T : AccessTokenData
     {
         HttpClient.DefaultRequestHeaders.Clear();
 
         var requestData = new Dictionary<string, string>
         {
-            { "account", Account },
-            { "password", Password }
+            { "account", account },
+            { "password", password }
         };
 
         var response = await HttpClient.PostAsync(BambuLabUrls.LoginUrl, new StringContent(await JsonSerializer.SerializeAsync(requestData), Encoding.UTF8, _mediaType));

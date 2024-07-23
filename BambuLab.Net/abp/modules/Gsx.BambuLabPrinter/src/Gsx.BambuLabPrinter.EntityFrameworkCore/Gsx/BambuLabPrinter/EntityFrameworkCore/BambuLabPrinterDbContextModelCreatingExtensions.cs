@@ -37,8 +37,9 @@ public static class BambuLabPrinterDbContextModelCreatingExtensions
             b.ConfigureByConvention();
 
             b.Property(p => p.Account).IsRequired().HasMaxLength(BambuLabAccountConsts.MaxAccountLength);
+            b.Property(p => p.UserName).IsRequired().HasMaxLength(BambuLabAccountConsts.MaxUserNameLength);
 
-            b.HasIndex(p => p.Account);
+            b.HasIndex(p => p.Account).IsUnique();
             b.HasIndex(p => p.OwnerId);
         });
 

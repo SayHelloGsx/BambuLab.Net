@@ -23,13 +23,15 @@ public class BambuLabAccountManager : DomainService
         [NotNull] BambuLabPrinterUser owner,
         [NotNull] string account,
         [NotNull] string password,
+        [NotNull] string userName,
         BambuLabCloudTypeEnum cloudType)
     {
         Check.NotNull(owner, nameof(owner));
         Check.NotNullOrWhiteSpace(account, nameof(account));
         Check.NotNullOrWhiteSpace(password, nameof(password));
+        Check.NotNullOrWhiteSpace(userName, nameof(userName));
 
-        var bambuLabAccount = new BambuLabAccount(GuidGenerator.Create(), owner.Id, account, password, cloudType);
+        var bambuLabAccount = new BambuLabAccount(GuidGenerator.Create(), owner.Id, account, password, userName, cloudType);
 
         await CheckAccountExistenceAsync(bambuLabAccount);
 

@@ -121,8 +121,8 @@ namespace BambuLab.Sdk.MiHomeNotification
 
         static async Task<IPrinter> ConnectToPrinterAsync(IConfiguration configuration)
         {
-            var chinaCloud = new ChinaBambuLabCloudRequester(configuration["BambuLab:Account"], configuration["BambuLab:Password"]);
-            await chinaCloud.LoginAsync();
+            var chinaCloud = new ChinaBambuLabCloudRequester();
+            await chinaCloud.LoginAsync(configuration["BambuLab:Account"], configuration["BambuLab:Password"]);
             var device = await chinaCloud.GetDeviceList();
 
             var SERIAL = device.GetDevId(0);

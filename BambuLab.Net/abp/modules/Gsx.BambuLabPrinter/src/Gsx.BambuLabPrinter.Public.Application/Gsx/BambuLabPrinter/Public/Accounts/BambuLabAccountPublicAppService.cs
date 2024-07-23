@@ -15,7 +15,7 @@ using Volo.Abp.Application.Dtos;
 namespace Gsx.BambuLabPrinter.Public.Accounts;
 
 [Authorize]
-public class BambuLabAccountPublicAppService : BambuLabPrinterPublicAppServiceBase, IBambuLabAccountAppService
+public class BambuLabAccountPublicAppService : BambuLabPrinterPublicAppServiceBase, IBambuLabAccountPublicAppService
 {
     protected virtual IBambuLabAccountRepository BambuLabAccountRepository { get; }
     protected virtual IBambuLabPrinterUserRepository BambuLabPrinterUserRepository { get; }
@@ -53,8 +53,8 @@ public class BambuLabAccountPublicAppService : BambuLabPrinterPublicAppServiceBa
 
     public virtual async Task<BambuLabAccountDto> CreateAsync(CreateBambuLabAccountDto input)
     {
-        var bambuLabCloudRequester = CreateBambuLabCloudRequester(input.CloudType, input.Account, input.Password);
-        var loginSuccessed = await bambuLabCloudRequester.TryLoginAsync();
+        var bambuLabCloudRequester = CreateBambuLabCloudRequester(input.CloudType);
+        var loginSuccessed = await bambuLabCloudRequester.TryLoginAsync(input.Account, input.Password);
 
         if (!loginSuccessed)
         {
@@ -62,25 +62,75 @@ public class BambuLabAccountPublicAppService : BambuLabPrinterPublicAppServiceBa
         }
 
         var user = await BambuLabPrinterUserRepository.GetAsync(CurrentUser.Id.Value);
-        var account = await BambuLabAccountManager.CreateBambuLabAccountAsnyc(user, input.Account, input.Password, input.CloudType);
+        var account = await BambuLabAccountManager.CreateBambuLabAccountAsnyc(user, input.Account, input.Password, bambuLabCloudRequester.UserName, input.CloudType);
 
         await BambuLabAccountRepository.InsertAsync(account);
 
         return ObjectMapper.Map<BambuLabAccount, BambuLabAccountDto>(account);
     }
 
-    protected virtual BambuLabCloudRequester CreateBambuLabCloudRequester(BambuLabCloudTypeEnum cloudType, string account, string password)
+    public virtual async Task<BambuLabAccountDto> UpdateAsync(Guid id, UpdateBambuLabAccountDto input)
+    {
+        var account = await GetAccountAsync(id);
+
+        var bambuLabCloudRequester = CreateBambuLabCloudRequester(account.CloudType);
+
+        var loginSuccessed = await bambuLabCloudRequester.TryLoginAsync(account.Account, input.Password);
+
+        if (!loginSuccessed)
+        {
+            throw new BambuLabAccountLoginFailedException();
+        }
+
+        account.SetPassword(input.Password);
+        account.SetUserName(bambuLabCloudRequester.UserName);
+
+        account = await BambuLabAccountRepository.UpdateAsync(account);
+
+        return ObjectMapper.Map<BambuLabAccount, BambuLabAccountDto>(account);
+    }
+
+    public virtual async Task<BambuLabAccountDto> SyncUserNameAsync(Guid id)
+    {
+        var account = await GetAccountAsync(id);
+        var bambuLabCloudRequester = CreateBambuLabCloudRequester(account.CloudType);
+
+        var loginSuccessed = await bambuLabCloudRequester.TryLoginAsync(account.Account, account.Password);
+
+        if (!loginSuccessed)
+        {
+            throw new BambuLabAccountLoginFailedException();
+        }
+
+        account.SetUserName(bambuLabCloudRequester.UserName);
+        account = await BambuLabAccountRepository.UpdateAsync(account);
+        return ObjectMapper.Map<BambuLabAccount, BambuLabAccountDto>(account);
+    }
+
+    protected virtual BambuLabCloudRequester CreateBambuLabCloudRequester(BambuLabCloudTypeEnum cloudType)
     {
         switch (cloudType)
         {
             case BambuLabCloudTypeEnum.Public:
-                return new PublicBambuLabCloudRequester(account, password);
+                return new PublicBambuLabCloudRequester();
 
             case BambuLabCloudTypeEnum.China:
-                return new ChinaBambuLabCloudRequester(account, password);
+                return new ChinaBambuLabCloudRequester();
 
             default:
                 throw new BambuLabCloudTypeNotSupportException(cloudType);
         }
+    }
+
+    private async Task<BambuLabAccount> GetAccountAsync(Guid id) 
+    {
+        var account = await BambuLabAccountRepository.GetAsync(id);
+
+        if (account.OwnerId != CurrentUser.Id.Value)
+        {
+            throw new BambuLabAccountNotBelongToOwnerException();
+        }
+
+        return account;
     }
 }

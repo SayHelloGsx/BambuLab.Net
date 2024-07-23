@@ -10,5 +10,6 @@ public static class BambuLabPrinterErrorCodes
         public const string AccountAlreadyExist = $"{AccountsPrefix}:0001";
         public const string CloudTypeNotSupport = $"{AccountsPrefix}:0002";
         public const string LoginFailed = $"{AccountsPrefix}:0003";
+        public const string NotOwner = $"{AccountsPrefix}:0004";
     }
 }

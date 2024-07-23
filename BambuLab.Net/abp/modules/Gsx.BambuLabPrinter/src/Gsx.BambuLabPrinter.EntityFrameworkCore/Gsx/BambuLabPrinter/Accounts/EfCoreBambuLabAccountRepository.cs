@@ -9,6 +9,7 @@ using Volo.Abp;
 using Volo.Abp.Domain.Repositories.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
+using JetBrains.Annotations;
 
 namespace Gsx.BambuLabPrinter.Accounts;
 
@@ -18,7 +19,13 @@ public class EfCoreBambuLabAccountRepository : EfCoreRepository<IBambuLabPrinter
     {
     }
 
-    public async Task<bool> ExistsAsync(string account, CancellationToken cancellationToken = default)
+    public async Task<BambuLabAccount> GetAsync([NotNull] string account, CancellationToken cancellationToken = default)
+    {
+        Check.NotNullOrWhiteSpace(account, nameof(account));
+        return await (await GetDbSetAsync()).FirstAsync(p => p.Account == account, GetCancellationToken(cancellationToken));
+    }
+
+    public async Task<bool> ExistsAsync([NotNull] string account, CancellationToken cancellationToken = default)
     {
         Check.NotNullOrWhiteSpace(account, nameof(account));
         return await (await GetDbSetAsync()).AnyAsync(p => p.Account == account, GetCancellationToken(cancellationToken));
