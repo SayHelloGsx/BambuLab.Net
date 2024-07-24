@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BambuLab.Sdk.Http;
 using Gsx.BambuLabPrinter.Accounts;
+using Gsx.BambuLabPrinter.Devices;
 using Gsx.BambuLabPrinter.Public;
 using Gsx.BambuLabPrinter.Users;
 using Microsoft.AspNetCore.Authorization;
@@ -20,15 +21,18 @@ public class BambuLabAccountPublicAppService : BambuLabPrinterPublicAppServiceBa
     protected virtual IBambuLabAccountRepository BambuLabAccountRepository { get; }
     protected virtual IBambuLabPrinterUserRepository BambuLabPrinterUserRepository { get; }
     protected virtual BambuLabAccountManager BambuLabAccountManager { get; }
+    protected virtual IDeviceRepository DeviceRepository { get; }
 
     public BambuLabAccountPublicAppService(
         IBambuLabAccountRepository bambuLabAccountRepository,
         IBambuLabPrinterUserRepository bambuLabPrinterUserRepository,
-        BambuLabAccountManager bambuLabAccountManager)
+        BambuLabAccountManager bambuLabAccountManager,
+        IDeviceRepository deviceRepository)
     {
         BambuLabAccountRepository = bambuLabAccountRepository;
         BambuLabPrinterUserRepository = bambuLabPrinterUserRepository;
         BambuLabAccountManager = bambuLabAccountManager;
+        DeviceRepository = deviceRepository;
     }
 
     public virtual async Task<PagedResultDto<BambuLabAccountDto>> GetListAsync(BambuLabAccountGetListInput input)
@@ -105,6 +109,15 @@ public class BambuLabAccountPublicAppService : BambuLabPrinterPublicAppServiceBa
         account.SetUserName(bambuLabCloudRequester.UserName);
         account = await BambuLabAccountRepository.UpdateAsync(account);
         return ObjectMapper.Map<BambuLabAccount, BambuLabAccountDto>(account);
+    }
+
+    public virtual async Task DeleteAsync(Guid id)
+    {
+        var account = await GetAccountAsync(id);
+        var devices = await DeviceRepository.GetListAsync(account.Id);
+
+        await DeviceRepository.DeleteManyAsync(devices);
+        await BambuLabAccountRepository.DeleteAsync(account);
     }
 
     protected virtual BambuLabCloudRequester CreateBambuLabCloudRequester(BambuLabCloudTypeEnum cloudType)

@@ -50,4 +50,10 @@ public class Device : FullAuditedAggregateRoot<Guid>
         Check.NotNullOrWhiteSpace(name, nameof(name));
         Name = name;
     }
+
+    public virtual void SetAccessCode([NotNull] string accessCode)
+    {
+        Check.NotNullOrWhiteSpace(accessCode, nameof(accessCode));
+        AccessCode = accessCode;
+    }
 }

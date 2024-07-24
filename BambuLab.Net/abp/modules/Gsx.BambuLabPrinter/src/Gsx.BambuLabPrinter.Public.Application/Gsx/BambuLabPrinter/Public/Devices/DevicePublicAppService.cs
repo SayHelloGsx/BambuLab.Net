@@ -8,6 +8,10 @@ using Gsx.BambuLabPrinter.Accounts;
 using Gsx.BambuLabPrinter.Devices;
 using Gsx.BambuLabPrinter.Public.Accounts;
 using Microsoft.AspNetCore.Authorization;
+using static Gsx.BambuLabPrinter.BambuLabPrinterErrorCodes;
+using Volo.Abp.Application.Dtos;
+using System.Security.Principal;
+using Volo.Abp.ObjectMapping;
 
 namespace Gsx.BambuLabPrinter.Public.Devices;
 
@@ -60,6 +64,52 @@ public class DevicePublicAppService : BambuLabPrinterPublicAppServiceBase, IDevi
 
         await DeviceRepository.InsertManyAsync(deviceList);
         return ObjectMapper.Map<List<Device>, List<DeviceDto>>(deviceList);
+    }
+
+    public virtual async Task<PagedResultDto<DeviceDto>> GetListAsync(DeviceGetListInput input)
+    {
+        await CheckOwnerAsync(input.AccountId);
+
+        var totalCount = await DeviceRepository.GetCountAsync(input.AccountId, input.Filter);
+        var deviceList = await DeviceRepository.GetListAsync(input.AccountId, input.Filter, input.Sorting, input.MaxResultCount, input.SkipCount);
+        return new PagedResultDto<DeviceDto>(totalCount, ObjectMapper.Map<List<Device>, List<DeviceDto>>(deviceList));
+    }
+
+    public virtual async Task<DeviceDto> SyncFromCloudAsync(Guid id)
+    {
+        var device = await DeviceRepository.GetAsync(id);
+        await CheckOwnerAsync(device.AccountId);
+        var bambuLabCloudRequester = await BambuLabCloudService.CreateBambuLabCloudRequesterAndLoginAsync(device.AccountId, CurrentUser.Id.Value);
+        var deviceFromCloudDtoList = await GetListFromCloudAsync(bambuLabCloudRequester);
+        var deviceFromCloud = deviceFromCloudDtoList.FirstOrDefault(p => p.Serial == device.Serial);
+
+        if (null == deviceFromCloud)
+        {
+            throw new DeviceNotFoundFromCloudException();
+        }
+
+        device.SetName(deviceFromCloud.Name);
+        device.SetAccessCode(deviceFromCloud.AccessCode);
+        device = await DeviceRepository.UpdateAsync(device);
+
+        return ObjectMapper.Map<Device, DeviceDto>(device);
+    }
+
+    public virtual async Task DeleteAsync(Guid id)
+    {
+        var device = await DeviceRepository.GetAsync(id);
+        await CheckOwnerAsync(device.AccountId);
+        await DeviceRepository.DeleteAsync(device);
+    }
+
+    protected virtual async Task CheckOwnerAsync(Guid accountId)
+    {
+        var bambuLabAccount = await BambuLabAccountRepository.GetAsync(accountId);
+
+        if (bambuLabAccount.OwnerId != CurrentUser.Id.Value)
+        {
+            throw new BambuLabAccountNotBelongToOwnerException();
+        }
     }
 
     protected static async Task<List<DeviceFromCloudDto>> GetListFromCloudAsync(BambuLabCloudRequester bambuLabCloudRequester)

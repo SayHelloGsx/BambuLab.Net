@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BambuLab.Sdk.Http;
 using Gsx.BambuLabPrinter.Accounts;
 using Gsx.BambuLabPrinter.Devices;
 using Gsx.BambuLabPrinter.Public.Accounts;
@@ -12,5 +13,7 @@ public class BambuLabPrinterPublicApplicationAutoMapperProfile : Profile
     {
         CreateMap<BambuLabAccount, BambuLabAccountDto>().MapExtraProperties();
         CreateMap<Device, DeviceDto>().MapExtraProperties();
+        CreateMap<AccessTokenData, BambuLabAccessTokenCacheItem>();
+        CreateMap<BambuLabAccessTokenCacheItem, AccessTokenData>();
     }
 }

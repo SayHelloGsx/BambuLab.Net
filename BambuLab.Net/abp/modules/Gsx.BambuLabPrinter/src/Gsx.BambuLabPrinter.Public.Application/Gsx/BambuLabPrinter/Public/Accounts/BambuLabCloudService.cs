@@ -1,23 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using BambuLab.Sdk.Http;
 using Gsx.BambuLabPrinter.Accounts;
 using Volo.Abp.Caching;
 using Volo.Abp.DependencyInjection;
+using Volo.Abp.ObjectMapping;
 
 namespace Gsx.BambuLabPrinter.Public.Accounts;
 
-public class BambuLabCloudService : ITransientDependency
+public class BambuLabCloudService : BambuLabPrinterPublicAppServiceBase, ITransientDependency
 {
     protected virtual IBambuLabAccountRepository BambuLabAccountRepository { get; }
-    protected virtual IDistributedCache<AccessTokenData> TokenCache { get; }
+    protected virtual IDistributedCache<BambuLabAccessTokenCacheItem> TokenCache { get; }
 
     public BambuLabCloudService(
         IBambuLabAccountRepository bambuLabAccountRepository,
-        IDistributedCache<AccessTokenData> tokenCache)
+        IDistributedCache<BambuLabAccessTokenCacheItem> tokenCache)
     {
         BambuLabAccountRepository = bambuLabAccountRepository;
         TokenCache = tokenCache;
@@ -61,21 +63,21 @@ public class BambuLabCloudService : ITransientDependency
                 throw new BambuLabCloudTypeNotSupportException(bambuLabAccount.CloudType);
         }
 
-        var token = await TokenCache.GetAsync(account);
+        var tokenCacheItem = await TokenCache.GetAsync(bambuLabAccount.Account);
 
-        if (null == token)
+        if (null == tokenCacheItem)
         {
             await bambuLabCloudRequester.LoginAsync(bambuLabAccount.Account, bambuLabAccount.Password);
         }
         else
         {
-            if (!await bambuLabCloudRequester.TryLoginAsync(token))
+            if (!await bambuLabCloudRequester.TryLoginAsync(ObjectMapper.Map<BambuLabAccessTokenCacheItem, AccessTokenData>(tokenCacheItem)))
             {
                 await bambuLabCloudRequester.LoginAsync(bambuLabAccount.Account, bambuLabAccount.Password);
             }
         }
 
-        await TokenCache.SetAsync(account, bambuLabCloudRequester.AccessTokenData);
+        await TokenCache.SetAsync(bambuLabAccount.Account, ObjectMapper.Map<AccessTokenData, BambuLabAccessTokenCacheItem>(bambuLabCloudRequester.AccessTokenData));
 
         return bambuLabCloudRequester;
     }

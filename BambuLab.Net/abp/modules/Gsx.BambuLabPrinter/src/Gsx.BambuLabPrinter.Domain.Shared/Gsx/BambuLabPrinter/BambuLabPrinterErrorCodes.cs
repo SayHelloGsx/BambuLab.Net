@@ -12,4 +12,10 @@ public static class BambuLabPrinterErrorCodes
         public const string LoginFailed = $"{AccountsPrefix}:0003";
         public const string NotOwner = $"{AccountsPrefix}:0004";
     }
+
+    public static class Devices
+    {
+        private const string DevicesPrefix = $"{ErrorCodePrefix}:Device";
+        public const string NotFoundFromCloud = $"{DevicesPrefix}:0001";
+    }
 }

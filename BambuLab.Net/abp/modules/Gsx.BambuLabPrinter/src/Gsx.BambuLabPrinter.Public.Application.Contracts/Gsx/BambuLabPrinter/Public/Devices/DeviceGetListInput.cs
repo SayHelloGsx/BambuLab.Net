@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 
-namespace Gsx.BambuLabPrinter.Public.Accounts;
+namespace Gsx.BambuLabPrinter.Public.Devices;
 
-public class BambuLabAccountGetListInput : PagedAndSortedResultRequestDto
+public class DeviceGetListInput : PagedAndSortedResultRequestDto
 {
     public virtual string Filter { get; set; }
+    public virtual Guid AccountId { get; set; }
 }
