@@ -123,7 +123,7 @@ namespace BambuLab.Sdk.MiHomeNotification
         {
             var chinaCloud = new ChinaBambuLabCloudRequester();
             await chinaCloud.LoginAsync(configuration["BambuLab:Account"], configuration["BambuLab:Password"]);
-            var device = await chinaCloud.GetDeviceList();
+            var device = await chinaCloud.GetDeviceListAsync();
 
             var SERIAL = device.GetDevId(0);
             var ACCESS_CODE = chinaCloud.AccessToken;
