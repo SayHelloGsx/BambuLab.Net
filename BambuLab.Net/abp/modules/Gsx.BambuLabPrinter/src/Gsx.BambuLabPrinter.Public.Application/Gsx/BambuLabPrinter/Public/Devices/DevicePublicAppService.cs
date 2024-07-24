@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using BambuLab.Sdk.Http;
 using Gsx.BambuLabPrinter.Accounts;
 using Gsx.BambuLabPrinter.Devices;
 using Gsx.BambuLabPrinter.Public.Accounts;
 using Microsoft.AspNetCore.Authorization;
-using static Gsx.BambuLabPrinter.BambuLabPrinterErrorCodes;
 using Volo.Abp.Application.Dtos;
-using System.Security.Principal;
-using Volo.Abp.ObjectMapping;
 
 namespace Gsx.BambuLabPrinter.Public.Devices;
 
